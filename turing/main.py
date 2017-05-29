@@ -1,34 +1,42 @@
 #!/usr/bin/env python
 """Run a Turing machine
 """
+from tape import Tape
 
-TAPE_LENGTH = 4
+MAX_ITERATIONS = 8
 DEFAULT_STATE = 'i1'
-ITERATIONS = 6
 
 FLIPFLOP = {
-    ('B', 'i1'): ('X', 'R', 'i2'),
-    ('X', 'i1'): ('B', 'R', 'i2'),
-    ('B', 'i2'): ('B', 'L', 'i1'),
+    ('_', 'i1'): ('X', '>', 'i2'),
+    ('X', 'i1'): ('_', '>', 'i2'),
+    ('_', 'i2'): ('_', '<', 'i1'),
 }
 
 def print_tape(tape, index, state):
-    print(''.join(tape) + ' : ' + state)
-    print(' ' * index + '^')
+    print(
+        tape.format(index-10, index+11) + \
+        ' : state {}'.format(state)
+    )
+    print(' ' * 10 + '^' + ' ' * 11 + ': index {}'.format(index))
 
 def run_program(program):
-    tape = ['B'] * TAPE_LENGTH
+    tape = Tape()
     index = 0
     state = DEFAULT_STATE
 
-    print_tape(tape, index, state)
-
-    for _ in range(ITERATIONS):
-        instruction_key = (tape[index], state)
-        tape[index], step, state = program[instruction_key]
-        index += 1 if step == 'R' else -1
-
+    for _ in range(MAX_ITERATIONS):
+        # see where we're at
         print_tape(tape, index, state)
+
+        # read next instruction
+        instruction_key = (tape[index], state)
+        # update
+        tape[index], step, state = program[instruction_key]
+        # move head
+        index += 1 if step == '>' else -1
+
+    print('Final state:')
+    print_tape(tape, index, state)
 
 def main():
     print('Running main')
