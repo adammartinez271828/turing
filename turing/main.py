@@ -3,6 +3,11 @@
 """
 from tape import Tape
 from programs import FLIPFLOP
+from programs import \
+    FLIPFLOP, \
+    INIT, \
+    ADD
+
 
 MAX_ITERATIONS = 8
 DEFAULT_STATE = 'i1'
@@ -37,8 +42,12 @@ def run_program(program):
 
 
 def main():
+    global MAX_ITERATIONS
+    MAX_ITERATIONS = 24
+
     print('Running main')
-    run_program(FLIPFLOP)
+    run_program({**INIT, **ADD})
+
 
 if __name__ == '__main__':
     main()
