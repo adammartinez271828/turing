@@ -2,15 +2,11 @@
 """Run a Turing machine
 """
 from tape import Tape
+from programs import FLIPFLOP
 
 MAX_ITERATIONS = 8
 DEFAULT_STATE = 'i1'
 
-FLIPFLOP = {
-    ('_', 'i1'): ('X', '>', 'i2'),
-    ('X', 'i1'): ('_', '>', 'i2'),
-    ('_', 'i2'): ('_', '<', 'i1'),
-}
 
 def print_tape(tape, index, state):
     print(
@@ -18,6 +14,7 @@ def print_tape(tape, index, state):
         ' : state {}'.format(state)
     )
     print(' ' * 10 + '^' + ' ' * 11 + ': index {}'.format(index))
+
 
 def run_program(program):
     tape = Tape()
@@ -37,6 +34,7 @@ def run_program(program):
 
     print('Final state:')
     print_tape(tape, index, state)
+
 
 def main():
     print('Running main')
