@@ -16,7 +16,6 @@ class Tape():
         try:
             return self.tape_values[index]
         except KeyError:
-            self.tape_values[index] = self.empty_value
             return self.empty_value
 
     def __setitem__(self, index, value):
