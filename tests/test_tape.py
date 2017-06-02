@@ -9,9 +9,6 @@ EMPTY_VALUE = '_'
 
 
 class TestTape():
-    def setUp(self):
-        self.tape = Tape()
-
     def test_init(self):
         tape = Tape()
         assert_equal(tape.tape_values, {})
