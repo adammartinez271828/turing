@@ -19,7 +19,13 @@ class Tape():
             return self.empty_value
 
     def __setitem__(self, index, value):
-        self.tape_values[index] = value
+        if value == self.empty_value:
+            try:
+                del self.tape_values[index]
+            except KeyError:
+                pass
+        else:
+            self.tape_values[index] = value
 
     def format(self, left_bound=None, right_bound=None):
         if left_bound is None:
