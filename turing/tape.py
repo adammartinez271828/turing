@@ -1,6 +1,8 @@
 #!/usr/env/bin python
+# -*- coding: utf-8 -*-
 """Class for a Turing machine tape
 """
+
 
 class Tape():
     """A tape for a turing machine
@@ -8,6 +10,7 @@ class Tape():
     Length of tape is only limited by computer memory.
     O(1) lookup and write operations.
     """
+
     def __init__(self, empty_value='_'):
         self.tape_values = {}
         self.empty_value = empty_value
@@ -38,7 +41,7 @@ class Tape():
             try:
                 right_bound = max(self.tape_values.keys())
             except ValueError:
-                right_bound = 0
+                right_bound = -1
 
         return ''.join(
             self[i]
@@ -47,4 +50,3 @@ class Tape():
 
     def __str__(self):
         return self.format()
-

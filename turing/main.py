@@ -1,8 +1,8 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """Run a Turing machine
 """
 from tape import Tape
-from programs import FLIPFLOP
 from programs import \
     FLIPFLOP, \
     INIT, \
@@ -15,10 +15,10 @@ DEFAULT_STATE = 'i1'
 
 def print_tape(tape, index, state):
     print(
-        tape.format(index-10, index+11) + \
+        tape.format(index - 10, index + 11) +
         ' : state {}'.format(state)
     )
-    print(' ' * 10 + '^' + ' ' * 11 + ': index {}'.format(index))
+    print(' ' * 10 + '^' + ' ' * 11 + ' : index {}'.format(index))
 
 
 def run_program(program):
@@ -43,12 +43,16 @@ def run_program(program):
 
 def main():
     global MAX_ITERATIONS
-    MAX_ITERATIONS = 24
 
     print('Running main')
+
+    # MAX_ITERATIONS = 9
+    # run_program(FLIPFLOP)
+    # MAX_ITERATIONS = 9
+    # run_program({**INIT, **{('_', 's1'): ('_', '>', 's1')}})
+    MAX_ITERATIONS = 22
     run_program({**INIT, **ADD})
 
 
 if __name__ == '__main__':
     main()
-
